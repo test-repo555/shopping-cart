@@ -42,4 +42,11 @@ public class ShoppingBasketTest {
         assertThat(totalPrice, is(new BigDecimal("2.30"))); // each Apple is 60p and orange is 25p
     }
 
+    @Test
+    public void when_two_items_with_bogof_promotion_are_added_then_promotion_should_applied() {
+        BigDecimal totalPrice = shoppingBasket.calculatePrice(APPLE, APPLE);
+        assertThat(totalPrice, is(new BigDecimal("0.60"))); // each Apple is 60p
+    }
+
+
 }
