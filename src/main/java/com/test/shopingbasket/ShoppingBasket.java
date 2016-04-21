@@ -11,6 +11,9 @@ public class ShoppingBasket {
                 case "Apple":
                     totalPrice = totalPrice.add(new BigDecimal("0.60"));
                     break;
+                case "Orange":
+                    totalPrice = totalPrice.add(new BigDecimal("0.25"));
+                    break;
             }
         }
 
