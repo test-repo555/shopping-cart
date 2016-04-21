@@ -1,5 +1,6 @@
 package com.test.shopingbasket;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -9,6 +10,15 @@ import static org.hamcrest.Matchers.*;
 
 public class ShoppingBasketTest {
 
+    public static final String APPLE = "Apple";
+    public static final String ORANGE = "Orange";
+
+    private static ShoppingBasket shoppingBasket;
+
+    @BeforeClass
+    public static void classSetup() {
+        shoppingBasket = new ShoppingBasket();
+    }
     @Test
     public void can_create_shopping_basket() {
         assertThat(new ShoppingBasket(), notNullValue());
@@ -16,25 +26,19 @@ public class ShoppingBasketTest {
 
     @Test
     public void when_single_item_is_added_then_return_the_price_of_item_as_total() {
-        ShoppingBasket shoppingBasket = new ShoppingBasket();
-        BigDecimal totalPrice = shoppingBasket.calculatePrice("Apple");
-
+        BigDecimal totalPrice = shoppingBasket.calculatePrice(APPLE);
         assertThat(totalPrice, is(new BigDecimal("0.60"))); // each Apple is 60p
     }
 
     @Test
     public void when_multiple_item_are_added_then_return_the_price_of_items_as_total() {
-        ShoppingBasket shoppingBasket = new ShoppingBasket();
-        BigDecimal totalPrice = shoppingBasket.calculatePrice("Apple", "Orange");
-
+        BigDecimal totalPrice = shoppingBasket.calculatePrice(APPLE, ORANGE);
         assertThat(totalPrice, is(new BigDecimal("0.85"))); // each Apple is 60p and orange is 25p
     }
 
     @Test
     public void check_the_total_price_when_multiple_mixed_items_are_added() {
-        ShoppingBasket shoppingBasket = new ShoppingBasket();
-        BigDecimal totalPrice = shoppingBasket.calculatePrice("Apple", "Orange", "Apple", "Apple", "Orange");
-
+        BigDecimal totalPrice = shoppingBasket.calculatePrice(APPLE, ORANGE, APPLE, APPLE, ORANGE);
         assertThat(totalPrice, is(new BigDecimal("2.30"))); // each Apple is 60p and orange is 25p
     }
 
