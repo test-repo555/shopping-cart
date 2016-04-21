@@ -27,6 +27,8 @@ public class ShoppingBasket {
         int orangesDiscountMultiplier = countOranges / 3;
         BigDecimal orangePrice = new BigDecimal("0.25");
         BigDecimal discountOnOranges = orangePrice.multiply(BigDecimal.valueOf(orangesDiscountMultiplier));
+
+        totalPrice = totalPrice.subtract(discountOnApples);
         totalPrice = totalPrice.subtract(discountOnOranges);
 
         return totalPrice;

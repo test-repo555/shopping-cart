@@ -38,8 +38,8 @@ public class ShoppingBasketTest {
 
     @Test
     public void check_the_total_price_when_multiple_mixed_items_are_added() {
-        BigDecimal totalPrice = shoppingBasket.calculatePrice(APPLE, ORANGE, APPLE, APPLE, ORANGE);
-        assertThat(totalPrice, is(new BigDecimal("2.30"))); // each Apple is 60p and orange is 25p
+        BigDecimal totalPrice = shoppingBasket.calculatePrice(APPLE, ORANGE, ORANGE);
+        assertThat(totalPrice, is(new BigDecimal("1.10"))); // each Apple is 60p and orange is 25p
     }
 
     @Test
@@ -52,6 +52,12 @@ public class ShoppingBasketTest {
     public void can_apply_3ForThePriceOf2_promotion() {
         BigDecimal totalPrice = shoppingBasket.calculatePrice(ORANGE, ORANGE, ORANGE);
         assertThat(totalPrice, is(new BigDecimal("0.50"))); // each Orange is 25p
+    }
+
+    @Test
+    public void can_apply_multiple_promotions() {
+        BigDecimal totalPrice = shoppingBasket.calculatePrice(ORANGE, APPLE, APPLE, ORANGE, ORANGE);
+        assertThat(totalPrice, is(new BigDecimal("1.10"))); // each Apple is 60p and orange is 25p
     }
 
 }
