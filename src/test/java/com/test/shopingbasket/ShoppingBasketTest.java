@@ -29,4 +29,13 @@ public class ShoppingBasketTest {
 
         assertThat(totalPrice, is(new BigDecimal("0.85"))); // each Apple is 60p and orange is 25p
     }
+
+    @Test
+    public void check_the_total_price_when_multiple_mixed_items_are_added() {
+        ShoppingBasket shoppingBasket = new ShoppingBasket();
+        BigDecimal totalPrice = shoppingBasket.calculatePrice("Apple", "Orange", "Apple", "Apple", "Orange");
+
+        assertThat(totalPrice, is(new BigDecimal("2.30"))); // each Apple is 60p and orange is 25p
+    }
+
 }
